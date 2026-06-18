@@ -1,7 +1,30 @@
 [README.md](https://github.com/user-attachments/files/29091889/README.md)[Uploading # 🏥 Medi-Mind — Digital Wellness Platform
 
 > A feature-rich, personal health management web app built with vanilla HTML, CSS & JavaScript (frontend) and Django (backend).
+> ## 🩺 MediMind
 
+🔐 **Secure User Authentication**
+    Create and manage personal accounts for a personalized healthcare experience.
+
+💊 **Medication Management**
+    Add medications, dosage details, and schedules to stay organized.
+
+⏰ **Medication Reminders**
+    Receive timely reminders to help maintain medication adherence.
+
+📋 **Prescription Management**
+    Store and access prescription information in one centralized location.
+
+📊 **Health Dashboard**
+    View medications, prescriptions, and wellness information through an intuitive interface.
+
+🌐 **Modern Web Application**
+    Built using HTML, CSS, JavaScript, Django, and SQLite.
+
+🚀 **Future Scope**
+    Planned enhancements include AI-powered health insights, diet recommendations, appointment scheduling, and cloud integration.
+
+![License](https://img.shields.io/badge/license-MIT-green)
 ![Django](https://img.shields.io/badge/Django-5.x-092E20?logo=django)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
@@ -111,6 +134,12 @@ Pull requests are welcome! For major changes, please open an issue first to disc
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
 
 ---
 
