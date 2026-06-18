@@ -1,4 +1,4 @@
-[README.md](https://github.com/user-attachments/files/29091889/README.md)[Uploading # 🏥 Medi-Mind — Digital Wellness Platform
+🏥 Medi-Mind — Digital Wellness Platform
 
 > A feature-rich, personal health management web app built with vanilla HTML, CSS & JavaScript (frontend) and Django (backend).
 > ## 🩺 MediMind
