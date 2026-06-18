@@ -1,8 +1,7 @@
 [README.md](https://github.com/user-attachments/files/29091889/README.md)[Uploading # 🏥 Medi-Mind — Digital Wellness Platform
 
-> A feature-rich, AI-powered personal health management web app built with vanilla HTML, CSS & JavaScript (frontend) and Django (backend).
+> A feature-rich, personal health management web app built with vanilla HTML, CSS & JavaScript (frontend) and Django (backend).
 
-![License](https://img.shields.io/badge/license-MIT-green)
 ![Django](https://img.shields.io/badge/Django-5.x-092E20?logo=django)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
@@ -115,15 +114,8 @@ Pull requests are welcome! For major changes, please open an issue first to disc
 
 ---
 
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
 ## 👤 Author
 
 **Aayush Mishra**  
 B.Tech CSE (AI) | AKTU — KCC Institute of Technology and Management  
-Built as part of Buildathon 1.0 🚀
-README.md…]()
+
