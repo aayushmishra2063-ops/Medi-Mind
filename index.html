@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Medi-Mind — Digital Wellness Platform</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===== STARTUP SPLASH ===== -->
+<div id="splash">
+  <div class="splash-bg-glow"></div>
+  <div class="splash-grid"></div>
+
+  <!-- Floating particles -->
+  <div class="splash-particle" style="width:9px;height:9px;left:8%;animation-duration:7s;animation-delay:0s"></div>
+  <div class="splash-particle" style="width:5px;height:5px;left:22%;animation-duration:10s;animation-delay:1.4s"></div>
+  <div class="splash-particle" style="width:12px;height:12px;left:50%;animation-duration:6.5s;animation-delay:0.3s"></div>
+  <div class="splash-particle" style="width:6px;height:6px;left:68%;animation-duration:9s;animation-delay:2.1s"></div>
+  <div class="splash-particle" style="width:4px;height:4px;left:84%;animation-duration:8s;animation-delay:0.9s"></div>
+  <div class="splash-particle" style="width:8px;height:8px;left:38%;animation-duration:7.5s;animation-delay:1.7s"></div>
+  <div class="splash-particle" style="width:5px;height:5px;left:75%;animation-duration:11s;animation-delay:0.6s"></div>
+
+  <!-- Ripple rings (centered on logo via CSS) -->
+  <div class="splash-rings">
+    <div class="splash-ring"></div>
+    <div class="splash-ring"></div>
+    <div class="splash-ring"></div>
+  </div>
+
+  <!-- Main stage -->
+  <div class="splash-stage">
+    <!-- Glow halo behind logo -->
+    <div style="position:relative">
+      <div class="splash-halo"></div>
+      <!-- Logo card — hero of the animation -->
+      <div class="splash-logo-card" style="background:linear-gradient(135deg,#1a7a45,#0e9c73);display:flex;align-items:center;justify-content:center"><span style='font-family:serif;font-size:3rem;font-weight:800;color:rgba(255,255,255,0.9)'>M</span></div>
+      </div>
+    </div>
+
+    <div class="splash-wordmark">Medi-Mind</div>
+    <div class="splash-tagline">Your Digital Wellness Platform</div>
+
+    <div class="splash-bar-track">
+      <div class="splash-bar-fill"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== NATURE BACKGROUND ===== -->
+<div class="nature-bg">
+  <div class="sky-clouds">
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+  </div>
+  <div class="hill hill-back"></div>
+  <div class="hill hill-mid"></div>
+  <div class="hill hill-front"></div>
+  <div class="tree tree-a"><div class="trunk"></div><div class="foliage"></div></div>
+  <div class="tree tree-b"><div class="trunk"></div><div class="foliage"></div></div>
+  <div class="tree tree-c"><div class="trunk"></div><div class="foliage"></div></div>
+  <div class="tree tree-d"><div class="trunk"></div><div class="foliage"></div></div>
+</div>
+
+<!-- ===== TOAST ===== -->
+<div id="toast"></div>
+
+<!-- ===== APP ROOT ===== -->
+<div class="app-root">
+
+  <!-- ========== SCREEN: AUTH (Login / Signup tab) ========== -->
+  <div id="screen-auth" class="screen active">
+    <div class="card">
+      <div class="brand">
+        <div class="brand-text">
+          <h1>Medi-Mind</h1>
+          <p>Your digital wellness platform</p>
+        </div>
+      </div>
+
+      <div class="tab-row">
+        <button class="tab-btn active" id="tab-login" onclick="switchTab('login')">Log In</button>
+        <button class="tab-btn" id="tab-signup" onclick="switchTab('signup')">Sign Up</button>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <div id="form-login">
+        <div class="field">
+          <label for="login-contact">Email or Phone</label>
+          <input type="text" id="login-contact" placeholder="you@example.com or +91XXXXXXXXXX" autocomplete="username">
+        </div>
+        <div class="field">
+          <label for="login-password">Password</label>
+          <div class="pw-wrap">
+            <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password">
+            <button type="button" class="pw-toggle" onclick="togglePw('login-password',this)" aria-label="Toggle password">
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+            </button>
+          </div>
+        </div>
+        <p id="login-error" class="msg error" style="display:none"></p>
+        <button class="btn btn-primary" onclick="handleLogin()">Log In →</button>
+        <div class="link-text">Don't have an account? <a onclick="switchTab('signup')">Sign up</a></div>
+      </div>
+
+      <!-- SIGNUP FORM (contact step — shown first) -->
+      <div id="form-signup" style="display:none">
+        <p class="section-sub" style="margin-bottom:1.25rem">Enter your email or phone. We'll send a verification code.</p>
+        <div class="field">
+          <label for="signup-contact">Email or Phone Number</label>
+          <input type="text" id="signup-contact" placeholder="you@example.com or +91XXXXXXXXXX">
+          <p id="signup-contact-error" class="msg error" style="display:none"></p>
+        </div>
+        <button class="btn btn-primary" onclick="handleSendCode()">Send Verification Code</button>
+        <div class="link-text">Already have an account? <a onclick="switchTab('login')">Log in</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== SCREEN: OTP VERIFY ========== -->
+  <div id="screen-otp" class="screen">
+    <div class="card">
+      <div class="brand">
+        <div class="brand-text">
+          <h1>Medi-Mind</h1>
+          
+        </div>
+      </div>
+      <p class="section-title">Verify your identity</p>
+      <p class="section-sub">Enter the 6-digit code sent to <strong id="otp-contact-label"></strong></p>
+      <div class="otp-grid">
+        <input class="otp-box" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="one-time-code">
+        <input class="otp-box" maxlength="1" inputmode="numeric" pattern="[0-9]">
+        <input class="otp-box" maxlength="1" inputmode="numeric" pattern="[0-9]">
+        <input class="otp-box" maxlength="1" inputmode="numeric" pattern="[0-9]">
+        <input class="otp-box" maxlength="1" inputmode="numeric" pattern="[0-9]">
+        <input class="otp-box" maxlength="1" inputmode="numeric" pattern="[0-9]">
+      </div>
+      <div id="otp-hint" class="otp-hint" style="display:none">Your demo code: <strong id="otp-code-display"></strong></div>
+      <p id="otp-error" class="msg error" style="display:none;text-align:center"></p>
+      <div id="timer-text">Resend in <span id="timer-count">60</span>s</div>
+      <button class="btn btn-primary" style="margin-top:1rem" onclick="handleVerifyOtp()">Verify & Continue</button>
+      <button class="btn btn-ghost" id="resend-btn" disabled onclick="handleResend()">Resend Code</button>
+      <button class="btn btn-ghost" onclick="goTo('screen-auth')">← Back</button>
+    </div>
+  </div>
+
+  <!-- ========== SCREEN: SET PASSWORD ========== -->
+  <div id="screen-password" class="screen">
+    <div class="card">
+      <div class="brand">
+        <div class="brand-text">
+          <h1>Create Password</h1>
+          <p>Choose a strong password for your account</p>
+        </div>
+      </div>
+
+      <div class="step-bar">
+        <div class="step-dot done">✓</div>
+        <div class="step-line done"></div>
+        <div class="step-dot done">✓</div>
+        <div class="step-line"></div>
+        <div class="step-dot active">3</div>
+        <div class="step-line"></div>
+        <div class="step-dot">4</div>
+      </div>
+
+      <div class="field">
+        <label for="new-password">New Password</label>
+        <div class="pw-wrap">
+          <input type="password" id="new-password" placeholder="At least 8 characters" oninput="checkStrength(this.value)">
+          <button type="button" class="pw-toggle" onclick="togglePw('new-password',this)" aria-label="Toggle">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+          </button>
+        </div>
+        <div class="strength-bar"><div class="strength-bar-fill" id="strength-fill"></div></div>
+        <div class="strength-label" id="strength-label">Enter password</div>
+      </div>
+      <div class="field">
+        <label for="confirm-password">Confirm Password</label>
+        <div class="pw-wrap">
+          <input type="password" id="confirm-password" placeholder="Re-enter password">
+          <button type="button" class="pw-toggle" onclick="togglePw('confirm-password',this)" aria-label="Toggle">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+          </button>
+        </div>
+      </div>
+      <p id="pw-error" class="msg error" style="display:none"></p>
+      <button class="btn btn-primary" onclick="handleSetPassword()">Set Password & Continue →</button>
+    </div>
+  </div>
+
+  <!-- ========== SCREEN: PROFILE SETUP ========== -->
+  <div id="screen-profile" class="screen">
+    <div class="card">
+      <div class="brand">
+        <div class="brand-text">
+          <h1>Health Profile</h1>
+          <p>Tell us a bit about yourself</p>
+        </div>
+      </div>
+
+      <div class="step-bar">
+        <div class="step-dot done">✓</div>
+        <div class="step-line done"></div>
+        <div class="step-dot done">✓</div>
+        <div class="step-line done"></div>
+        <div class="step-dot done">✓</div>
+        <div class="step-line"></div>
+        <div class="step-dot active">4</div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="p-first">First Name</label>
+          <input type="text" id="p-first" placeholder="Enter first name">
+        </div>
+        <div class="field">
+          <label for="p-last">Last Name</label>
+          <input type="text" id="p-last" placeholder="Enter last name">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="p-age">Age</label>
+          <input type="number" id="p-age" min="0" max="120" placeholder="e.g. 25">
+        </div>
+        <div class="field">
+          <label for="p-height">Height (cm)</label>
+          <input type="number" id="p-height" min="50" max="250" placeholder="Height in cm">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="p-weight">Weight (kg)</label>
+          <input type="number" id="p-weight" min="10" max="600" placeholder="Weight in kg">
+        </div>
+        <div class="field">
+          <label for="p-blood">Blood Group</label>
+          <select id="p-blood">
+            <option value="">Select…</option>
+            <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+            <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+          </select>
+        </div>
+      </div>
+      <p id="profile-error" class="msg error" style="display:none"></p>
+      <button class="btn btn-primary" onclick="handleSaveProfile()">Save Profile & Go to Dashboard →</button>
+      <button class="btn btn-ghost" onclick="goTo('screen-auth')">← Back to Login</button>
+    </div>
+  </div>
+
+  <!-- ========== SCREEN: HOME / DASHBOARD ========== -->
+  <div id="screen-home" class="screen">
+    <div class="card">
+      <div class="home-header">
+        
+        <div>
+          <h1>Medi-Mind</h1>
+          <p>Your digital wellness platform</p>
+        </div>
+        <div class="home-welcome-badge" id="welcome-badge">👋 Welcome!</div>
+      </div>
+
+      <!-- Profile summary bar -->
+      <div class="profile-summary" id="profile-summary" style="display:none">
+        <div class="profile-stat"><div class="val" id="sum-age">—</div><div class="lbl">Age</div></div>
+        <div class="profile-stat"><div class="val" id="sum-height">—</div><div class="lbl">Height (cm)</div></div>
+        <div class="profile-stat"><div class="val" id="sum-weight">—</div><div class="lbl">Weight (kg)</div></div>
+        <div class="profile-stat"><div class="val" id="sum-blood">—</div><div class="lbl">Blood Group</div></div>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-card feature-card-clickable" onclick="goTo('screen-prescription-manager')">
+          <div class="feature-icon blue">🔬</div>
+          <h3>Prescription Manager</h3>
+          <p>Track, upload, and organize all your medical prescriptions and dosages.</p>
+        </div>
+        <div class="feature-card feature-card-clickable" onclick="goTo('screen-diet-manager')">
+          <div class="feature-icon" style="background:#e8faf0">🥗</div>
+          <h3>Diet Manager / Recommendations</h3>
+          <p>Log meals, track macros, hydrate, and get quick nutrition suggestions.</p>
+        </div>
+        <div class="feature-card feature-card-clickable" onclick="goTo('screen-nutrition-score')">
+          <div class="feature-icon amber">📊</div>
+          <h3>Nutrition Score</h3>
+          <p>Get real-time feedback on your diet quality, macro balance, and hydration.</p>
+        </div>
+        <div class="feature-card feature-card-clickable" onclick="goTo('screen-exercises')">
+          <div class="feature-icon pink">🏃‍♂️</div>
+          <h3>Exercise Tracker</h3>
+          <p>Log workouts, calculate calorie burn, and access custom routines based on your profile.</p>
+        </div>
+        <div class="feature-card feature-card-clickable" onclick="goTo('screen-lab-tests')">
+          <div class="feature-icon amber">🧪</div>
+          <h3>Lab Test Schedule</h3>
+          <p>Schedule diagnostic tests, prep instructions, dates, and completion status.</p>
+        </div>
+        <div class="feature-card feature-card-clickable" onclick="goTo('screen-medication-reminders')">
+          <div class="feature-icon pink">💊</div>
+          <h3>Medication Reminders</h3>
+          <p>Create medicine reminders with dose, time, frequency, and daily completion.</p>
+        </div>
+      </div>
+
+      <div class="home-footer">
+        © <span id="year"></span> Medi-Mind. All rights reserved.
+        <br>
+        <button class="logout-btn" onclick="handleLogout()">Log Out</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== SCREEN: PRESCRIPTION MANAGER ========== -->
+  <div id="screen-prescription-manager" class="screen">
+    <div class="card manager-card">
+      <div class="screen-header">
+        <h2>Prescription Manager</h2>
+        <button class="btn btn-ghost" style="width: auto; padding: 0.4rem 1rem; margin-top: 0;" onclick="goTo('screen-home')">← Back</button>
+      </div>
+
+      <div class="panel-grid">
+        <!-- Add Prescription -->
+        <div class="panel-card">
+          <p class="card-section-title">Manual Prescription Entry</p>
+          <div class="field">
+            <label for="presc-doc-name">Doctor Name</label>
+            <input type="text" id="presc-doc-name" placeholder="Dr. Sarah Jenkins">
+          </div>
+          <div class="field">
+            <label for="presc-med-name">Medication Details</label>
+            <input type="text" id="presc-med-name" placeholder="Amoxicillin 500mg (1x daily, 7 days)">
+          </div>
+          <button class="btn btn-primary" onclick="handleAddPrescriptionManual()">Save Prescription</button>
+        </div>
+        <!-- Prescription List -->
+        <div class="panel-card">
+          <p class="card-section-title">📂 Saved Prescriptions</p>
+          <div class="prescription-list" id="prescription-list-container">
+            <p style="color: var(--gray-400); font-size: 0.85rem; text-align: center; margin-top: 2rem;">No prescriptions saved yet.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== SCREEN: DIET MANAGER ========== -->
+  <div id="screen-diet-manager" class="screen">
+    <div class="card manager-card">
+      <div class="screen-header">
+        <h2>Diet Manager / Recommendations</h2>
+        <button class="btn btn-ghost" style="width: auto; padding: 0.4rem 1rem; margin-top: 0;" onclick="goTo('screen-home')">← Back</button>
+      </div>
+
+      <div class="panel-grid">
+        <!-- Calorie Circular Progress & Macros -->
+        <div class="panel-card" style="text-align: center;">
+          <p class="card-section-title" style="justify-content: center;">📊 Daily Summary</p>
+          
+          <div class="calorie-summary-circle active-border">
+            <span class="calorie-number" id="diet-cal-remaining">2000</span>
+            <span class="calorie-label">kcal left</span>
+          </div>
+
+          <div class="diet-stats-row">
+            <div class="diet-stat-col">
+              <div class="val" id="diet-cal-target">2000</div>
+              <div class="lbl">Goal</div>
+            </div>
+            <div class="diet-stat-col">
+              <div class="val" id="diet-cal-logged">0</div>
+              <div class="lbl">Logged</div>
+            </div>
+            <div class="diet-stat-col">
+              <div class="val" id="diet-cal-burned">0</div>
+              <div class="lbl">Burned</div>
+            </div>
+          </div>
+
+          <!-- Macros Bars -->
+          <div style="text-align: left; margin-top: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 600;">
+              <span style="color:#3b82f6">Protein</span>
+              <span id="diet-macro-protein-label">0g / 120g</span>
+            </div>
+            <div class="macro-progress-bar"><div class="macro-progress-fill protein" id="diet-macro-protein-bar" style="width: 0%"></div></div>
+
+            <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 600;">
+              <span style="color:#f59e0b">Carbohydrates</span>
+              <span id="diet-macro-carbs-label">0g / 250g</span>
+            </div>
+            <div class="macro-progress-bar"><div class="macro-progress-fill carbs" id="diet-macro-carbs-bar" style="width: 0%"></div></div>
+
+            <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 600;">
+              <span style="color:#ef4444">Fats</span>
+              <span id="diet-macro-fats-label">0g / 65g</span>
+            </div>
+            <div class="macro-progress-bar"><div class="macro-progress-fill fats" id="diet-macro-fats-bar" style="width: 0%"></div></div>
+          </div>
+
+          <!-- Water Hydration Card -->
+          <div class="water-tracker-card">
+            <div class="water-details" style="text-align: left;">
+              <h4>Water Hydration</h4>
+              <p id="water-intake-text">Logged: 0 / 2500 ml</p>
+            </div>
+            <button class="water-glass-btn" onclick="handleAddWater()" aria-label="Add a glass of water">🥛</button>
+          </div>
+
+          <div class="recommendation-panel">
+            <h4>Today's Recommendation</h4>
+            <p id="diet-recommendation-text">Log a meal to see personalized diet suggestions.</p>
+          </div>
+        </div>
+        <!-- Meal Logging & Food List -->
+        <div class="panel-card">
+          <p class="card-section-title">🍳 Log Meal</p>
+          <div class="field-row">
+            <div class="field">
+              <label for="diet-food-name">Food Item</label>
+              <input type="text" id="diet-food-name" placeholder="Brown Rice">
+            </div>
+            <div class="field">
+              <label for="diet-food-meal">Meal Type</label>
+              <select id="diet-food-meal">
+                <option value="breakfast">Breakfast</option>
+                <option value="lunch" selected>Lunch</option>
+                <option value="dinner">Dinner</option>
+                <option value="snack">Snack</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="diet-food-cals">Calories (kcal)</label>
+              <input type="number" id="diet-food-cals" placeholder="150" min="0">
+            </div>
+            <div class="field">
+              <label for="diet-food-protein">Protein (g)</label>
+              <input type="number" id="diet-food-protein" placeholder="4" min="0">
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="diet-food-carbs">Carbs (g)</label>
+              <input type="number" id="diet-food-carbs" placeholder="32" min="0">
+            </div>
+            <div class="field">
+              <label for="diet-food-fats">Fats (g)</label>
+              <input type="number" id="diet-food-fats" placeholder="1" min="0">
+            </div>
+          </div>
+
+          <button class="btn btn-primary" onclick="handleAddMealManual()">Add Meal</button>
+
+          <!-- Quick log presets -->
+          <p class="card-section-title" style="margin-top: 1rem;">⚡ Quick Add Presets</p>
+          <div class="quick-add-grid">
+            <button class="quick-add-btn" onclick="handleQuickAddMeal('Oatmeal with Honey', 290, 8, 55, 4, 'breakfast')">
+              🥣 Oatmeal with Honey<br><span style="font-size:0.7rem;font-weight:normal;color:var(--gray-400)">290 kcal · 8g Protein</span>
+            </button>
+            <button class="quick-add-btn" onclick="handleQuickAddMeal('Grilled Chicken & Rice', 510, 42, 50, 7, 'lunch')">
+              🍗 Grilled Chicken & Rice<br><span style="font-size:0.7rem;font-weight:normal;color:var(--gray-400)">510 kcal · 42g Protein</span>
+            </button>
+            <button class="quick-add-btn" onclick="handleQuickAddMeal('Mixed Berry Protein Shake', 210, 26, 12, 3, 'snack')">
+              🥤 Protein Shake<br><span style="font-size:0.7rem;font-weight:normal;color:var(--gray-400)">210 kcal · 26g Protein</span>
+            </button>
+            <button class="quick-add-btn" onclick="handleQuickAddMeal('Salad with Salmon', 430, 32, 10, 22, 'dinner')">
+              🥗 Salad with Salmon<br><span style="font-size:0.7rem;font-weight:normal;color:var(--gray-400)">430 kcal · 32g Protein</span>
+            </button>
+          </div>
+
+          <!-- Food Log List -->
+          <p class="card-section-title" style="margin-top: 1.5rem;">📝 Today's Meal Log</p>
+          <div class="prescription-list" id="diet-meal-log-container" style="max-height: 200px;">
+            <p style="color: var(--gray-400); font-size: 0.85rem; text-align: center; margin-top: 1rem;">No meals logged today.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== SCREEN: NUTRITION SCORE ========== -->
+  <div id="screen-nutrition-score" class="screen">
+    <div class="card score-card">
+      <div class="screen-header">
+        <h2>Nutrition Score</h2>
+        <button class="btn btn-ghost" style="width: auto; padding: 0.4rem 1rem; margin-top: 0;" onclick="goTo('screen-home')">← Back</button>
+      </div>
+
+      <div class="score-container-box">
+        <div class="gauge-wrapper">
+          <svg class="gauge-svg" width="160" height="160">
+            <circle class="gauge-track" cx="80" cy="80" r="70"></circle>
+            <circle class="gauge-fill" id="nutrition-gauge-fill" cx="80" cy="80" r="70" stroke-dasharray="440" stroke-dashoffset="440"></circle>
+          </svg>
+          <div class="gauge-center-text">
+            <span class="gauge-score" id="nutrition-score-num">100</span>
+            <span class="gauge-grade" id="nutrition-score-grade">A+</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="card-section-title">📊 Health Breakdown & Tips</p>
+      <div class="nutrition-status-list" id="nutrition-status-container">
+        <div class="nutrition-status-item good">
+          <div class="nutrition-status-icon">✓</div>
+          <div>
+            <div class="nutrition-status-title">System Ready</div>
+            <div class="nutrition-status-desc">Start logging your meals, water intake, and workouts to calculate your live wellness score.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== SCREEN: EXERCISE TRACKER ========== -->
+  <div id="screen-exercises" class="screen">
+    <div class="card manager-card">
+      <div class="screen-header">
+        <h2>Exercise Tracker</h2>
+        <button class="btn btn-ghost" style="width: auto; padding: 0.4rem 1rem; margin-top: 0;" onclick="goTo('screen-home')">← Back</button>
+      </div>
+
+      <div class="panel-grid">
+        <!-- Log Exercise Panel -->
+        <div class="panel-card">
+          <p class="card-section-title">🏃‍♂️ Log Your Activity</p>
+          
+          <div class="field-row">
+            <div class="field">
+              <label for="exercise-type">Workout Type</label>
+              <select id="exercise-type">
+                <option value="walking">Walking (Brisk)</option>
+                <option value="running" selected>Running</option>
+                <option value="cycling">Cycling</option>
+                <option value="swimming">Swimming</option>
+                <option value="weightlifting">Weight Training</option>
+                <option value="yoga">Yoga / Stretching</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="exercise-duration">Duration (minutes)</label>
+              <input type="number" id="exercise-duration" placeholder="30" min="1" max="300">
+            </div>
+          </div>
+
+          <button class="btn btn-primary" onclick="handleAddWorkout()">Log Workout</button>
+
+          <!-- Today's exercises -->
+          <p class="card-section-title" style="margin-top: 1.5rem;">⏱ Today's Logged Activities</p>
+          <div class="exercise-log-list" id="exercise-log-container">
+            <p style="color: var(--gray-400); font-size: 0.85rem; text-align: center; margin-top: 1.5rem;">No exercises logged today.</p>
+          </div>
+        </div>
+
+        <!-- Custom Recommendations Panel -->
+        <div class="panel-card">
+          <p class="card-section-title">💡 Recommended For You</p>
+          <p style="font-size:0.78rem; color:var(--gray-400); margin-bottom: 1rem;" id="exercise-rec-desc">Routines tailored based on your age and BMI details.</p>
+          
+          <div class="exercise-routine-list" id="exercise-routines-container">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== SCREEN: LAB TEST SCHEDULE ========== -->
+  <div id="screen-lab-tests" class="screen">
+    <div class="card manager-card">
+      <div class="screen-header">
+        <h2>Lab Test Schedule</h2>
+        <button class="btn btn-ghost" style="width: auto; padding: 0.4rem 1rem; margin-top: 0;" onclick="goTo('screen-home')">Back</button>
+      </div>
+
+      <div class="panel-grid">
+        <div class="panel-card">
+          <p class="card-section-title">Schedule Test</p>
+          <div class="field-row">
+            <div class="field">
+              <label for="lab-test-name">Test Name</label>
+              <input type="text" id="lab-test-name" placeholder="Complete Blood Count">
+            </div>
+            <div class="field">
+              <label for="lab-test-date">Date</label>
+              <input type="date" id="lab-test-date">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="lab-test-time">Time</label>
+              <input type="time" id="lab-test-time">
+            </div>
+            <div class="field">
+              <label for="lab-test-location">Lab / Location</label>
+              <input type="text" id="lab-test-location" placeholder="City Diagnostics">
+            </div>
+          </div>
+          <div class="field">
+            <label for="lab-test-prep">Preparation Notes</label>
+            <input type="text" id="lab-test-prep" placeholder="Fasting required for 8 hours">
+          </div>
+          <button class="btn btn-primary" onclick="handleAddLabTest()">Add Lab Test</button>
+        </div>
+
+        <div class="panel-card">
+          <p class="card-section-title">Scheduled Tests</p>
+          <div class="prescription-list" id="lab-test-list-container">
+            <p style="color: var(--gray-400); font-size: 0.85rem; text-align: center; margin-top: 2rem;">No lab tests scheduled yet.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== SCREEN: MEDICATION REMINDERS ========== -->
+  <div id="screen-medication-reminders" class="screen">
+    <div class="card manager-card">
+      <div class="screen-header">
+        <h2>Medication Reminders</h2>
+        <button class="btn btn-ghost" style="width: auto; padding: 0.4rem 1rem; margin-top: 0;" onclick="goTo('screen-home')">Back</button>
+      </div>
+
+      <div class="panel-grid">
+        <div class="panel-card">
+          <p class="card-section-title">Add Reminder</p>
+          <div class="field-row">
+            <div class="field">
+              <label for="med-reminder-name">Medicine Name</label>
+              <input type="text" id="med-reminder-name" placeholder="Metformin">
+            </div>
+            <div class="field">
+              <label for="med-reminder-dose">Dose</label>
+              <input type="text" id="med-reminder-dose" placeholder="500mg">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="med-reminder-time">Time</label>
+              <input type="time" id="med-reminder-time">
+            </div>
+            <div class="field">
+              <label for="med-reminder-frequency">Frequency</label>
+              <select id="med-reminder-frequency">
+                <option value="Daily">Daily</option>
+                <option value="Twice daily">Twice daily</option>
+                <option value="Weekly">Weekly</option>
+                <option value="As needed">As needed</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn btn-primary" onclick="handleAddMedicationReminder()">Save Reminder</button>
+        </div>
+
+        <div class="panel-card">
+          <p class="card-section-title">Today's Reminders</p>
+          <div class="prescription-list" id="med-reminder-list-container">
+            <p style="color: var(--gray-400); font-size: 0.85rem; text-align: center; margin-top: 2rem;">No medication reminders yet.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /app-root -->
+
+<script src="js/app.js"></script>
+
+</body>
+</html>
